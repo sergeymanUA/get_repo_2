@@ -1,0 +1,25 @@
+JUnit	(Annot, Assertions, Test runners)	
+		API/Executing (by JUnitCore) procedure (ClassToTest -> TestingClass/TestCaseClass -> TestRunner/TestSuiteClass):
+		ClassToTest ((POJO) + EBus.LogicClass)) -> 
+Assert using:	TestingClass{@Test/aEquals(str, class.getStr()} -> 
+Exec.T.:		TestRunnerClass{main(){Result r = JUnitCore.runClasses(TC.classs);}
+Fixture use:	TC extends TestCase{@Before setUp( //init, instant classToTest, .. ){}; @Test }
+		TC extends TestResult{ +synchr. v. addError(..)/addFailure(..), +synchr. v. stop(){}
+Ignore T.:	TC { @Ignore @Test +m(); @Test +m(); }					
+Time T.:	TC { @Test(timeout = 1000) +m(); @Test +m(); }
+Exception T:	TC { @Test(expected = ArithmeticException.class)
+Param-ed T:	@RunWith(Parametrized.class) TC { @Parametrized.Parameters +st.Col m(){..} @Test +v. m(){aE(); }
+			TestSuiteClass{main(){ TestSuite s = new TS(TC1.class, TC2.classs, ...); s.run(TR res); }
+Suite T.:		@RunWith(Suite.class) @Suite.SuiteClasses({TC1.class, TC2.class}) +JUTS{}
+
+		@Before/AfterClass (static) - execute once on start
+		@Before/After - execute on every test
+
+http://www.mkyong.com/unittest/junit-4-vs-testng-comparison/	
+TestNG	+data provider
+	+Annot. Ierarchy (threadsafe)
+	+Custom asserts
+	+xml for scoping
+	+group Testing 	  (-JU)
+	+dependcy Testing (-JU)
+	+parmetrized(object) T(JU prim. value)
