@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<!-- <context:component-scan base-package="com.wiley.beginningspring.ch2" 
+		/> -->
+	<context:component-scan base-package="edu.smvc.bs" />
+
+	<!-- <bean id="accountService" class="com.wiley.beginningspring.ch2.AccountServiceImpl"> -->
+	<bean id="accountService" class="edu.smvc.bs.AccountServiceImpl">
+		<property name="accountDao" ref="accountDao" />
+	</bean>
+
+	<!-- <bean id="accountDao" class="com.wiley.beginningspring.ch2.AccountDaoInMemoryImpl"> -->
+	<bean id="accountDao" class="edu.smvc.bs.AccountDaoInMemoryImpl">
+
+	</bean>
+
+	<mvc:annotation-driven validator="validator" />
+	
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:messages" />
+	</bean>
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+	
+	
+	<!-- TP/SMVC -->
+	<bean id="helloWorld" class="edu.smvc.bs.HelloWorld" scope="prototype"
+		init-method="init" destroy-method="destroy">
+		<property name="message" value="Hello from Spring!" />
+	</bean>
+
+
+	<beans profile="Development">
+		<import resource="dev-config-context.xml" />
+	</beans>
+
+	<beans profile="Production">
+		<import resource="prod-config-context.xml" />
+	</beans>
+
+</beans>

@@ -16,6 +16,7 @@ public class TestRunner2 {
 		}
 		
 		System.out.println(result.wasSuccessful());
+		
 
 	}
 

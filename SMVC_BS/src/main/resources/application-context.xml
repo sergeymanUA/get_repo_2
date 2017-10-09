@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<mvc:annotation-driven />
+	
+<!-- 	<bean id="Greeter"
+		class="com.springessentialsbook.chapter1.service.impl.GreetingServiceImpl">
+	</bean> -->
+	
+	<!-- BS 1 -->
+<!-- 	<bean id="accountService" class="edu.bs.smvc.AccountServiceImpl">
+		<property name="accountDao" ref="accountDao"/>
+	</bean>
+	
+	<bean id="accountDao" class="edu.bs.smvc.AccountDaoInMemoryImpl">
+	</bean> -->
+</beans>
