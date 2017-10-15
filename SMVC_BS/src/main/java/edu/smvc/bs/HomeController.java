@@ -8,9 +8,11 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,9 +27,9 @@ public class HomeController {
 
 	private static final String[] countries = { "Turkey", "USA", "Germany" };
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	@Autowired
+	AccountService accountService;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -44,7 +46,7 @@ public class HomeController {
 	public ModelAndView sayHello() {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("message", "Hello Reader!");
-		mv.setViewName("helloMV");
+		mv.setViewName("helloMV");						//View (helloMV.jsp)
 		return mv;
 	}
 
@@ -82,16 +84,21 @@ public class HomeController {
 		return modelAndView;
 	}
 	
-	// BG GET/POST (@ModelAttriubute) <form:form modelAttribute/path>
-	/*
-	 * @RequestMapping(value = "/products/add", method = RequestMethod.GET)
-	 * public String getAddNewProductForm(Model model) { Product newProduct =
-	 * new Product(); model.addAttribute("newProduct", newProduct); return
-	 * "addProduct"; }
-	 * 
-	 * @RequestMapping(value = "/products/add", method = RequestMethod.POST)
-	 * public String processAddNewProductForm(@ModelAttribute("newProduct")
-	 * Product productToBeAdded) { productService.addProduct(productToBeAdded);
-	 * return "redirect:/market/products"; }
-	 */
+	// BG GET/POST (@ModelAttriubute) <form:form modelAttribute/path>	
+	@RequestMapping(value = "/accounts", method = RequestMethod.GET)
+	public String getAddNewAccountForm(Model model) {
+		//Product newProduct = new Product();
+		Account newAccount = new Account();
+		model.addAttribute("newAccount", newAccount);
+		return "addAccount";
+	}
+
+	@RequestMapping(value = "/accounts", method = RequestMethod.POST)
+	public String processAddNewAccountForm(@ModelAttribute("newAccount") Account accountToBeAdded) {
+		accountService.addAccount(accountToBeAdded);
+		//productService.addProduct(productToBeAdded);
+		//return "redirect:/market/products";
+		return "redirect:/accounts";
+	}
+	 
 }

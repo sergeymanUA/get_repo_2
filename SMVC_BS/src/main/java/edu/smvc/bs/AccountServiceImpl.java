@@ -50,4 +50,10 @@ public class AccountServiceImpl implements AccountService {
 	public Map<Long, Account> getMap() {
 		return accountDao.getMap();
 	}
+
+	@Override
+	public void addAccount(Account account) {
+		accountDao.insert(account);
+		
+	}
 }

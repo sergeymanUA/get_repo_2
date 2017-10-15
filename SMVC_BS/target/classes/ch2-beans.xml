@@ -32,6 +32,12 @@
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
 	
+	<context:annotation-config />
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
 	
 	<!-- TP/SMVC -->
 	<bean id="helloWorld" class="edu.smvc.bs.HelloWorld" scope="prototype"
@@ -47,5 +53,7 @@
 	<beans profile="Production">
 		<import resource="prod-config-context.xml" />
 	</beans>
+	
+
 
 </beans>

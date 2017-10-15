@@ -11,4 +11,6 @@ public interface AccountService {
     public Account getAccount(long accountId);
 
     public Map<Long, Account> getMap();
+    
+    public void addAccount(Account account);
 }
